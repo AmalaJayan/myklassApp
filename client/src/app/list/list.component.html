@@ -1,0 +1,27 @@
+<div class="table-container">
+  <h4 *ngIf="role;else user_content">Schedule</h4>
+  <ng-template #user_content><h4>My Appointments</h4></ng-template>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Date</th>
+      <th>Status</th>
+    </tr>
+    <tr *ngFor="let list of list$ | async">
+      <td >
+        {{list.name}}
+      </td>
+      <td>{{list.description}}</td>
+      <td *ngIf="role;else other_content">{{list.date | date:'medium':'+530'}} IST</td>
+      <ng-template #other_content><td>{{list.date | date:'medium':'+7'}} PST</td></ng-template>
+      <td>{{list.status}}</td>
+    </tr>
+  </table>
+  <button *ngIf="role" (click)="create()">Create New Appointment</button>
+</div>
+<!-- <ul>
+  <li *ngFor="let list of list$ | async">
+    <input type="checkbox" [(ngModel)]="list.completed"> {{list.name}}
+  </li>
+</ul> -->

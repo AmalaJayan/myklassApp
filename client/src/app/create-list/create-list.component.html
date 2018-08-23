@@ -1,0 +1,42 @@
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Create A New Appointment</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="createForm" class="create-form">
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Name" formControlName="name" #name>
+
+      </mat-form-field>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder="Description" formControlName="description" #description>
+      </mat-form-field>
+      <form class="form-inline">
+          <div class="form-group">
+            <div class="input-group">
+              <input class="form-control" placeholder="dd-mm-yyyy"
+                     name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker" #date>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                  <img src="assets/images/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <ngbd-timepicker-basic (messageEvent)="receiveMessage($event)" ></ngbd-timepicker-basic>
+      <mat-form-field>
+          <mat-select placeholder="Status" formControlName="status" #status>
+            <mat-option value="scheduled">Scheduled</mat-option>
+            <mat-option value="completed">Completed</mat-option>
+          </mat-select>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+      <button type="submit" (click)="addIssue(name.value, description.value, date.value,status.value)">Save</button>
+    </form>
+  </mat-card>
+</div>

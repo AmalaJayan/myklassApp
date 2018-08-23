@@ -1,0 +1,11 @@
+nav {
+  margin-bottom: 10px;
+}
+#header-nav {
+  width: 50%;
+    float: left;
+    padding: 20px;
+}
+#logout-btn{
+  padding: 20px;
+}
